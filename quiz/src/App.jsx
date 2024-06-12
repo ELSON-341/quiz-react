@@ -1,6 +1,8 @@
+// react, componentes, estáticos
+import { useContext } from "react"
 
-// components
 import Welcome from './components/Welcome'
+
 import './App.css'
 
 function App() {

@@ -25,6 +25,7 @@ button {
   background: linear-gradient(90deg, rgba(132, 53, 222, 1) 0%, rgba(184, 84, 232, 1) 100%);
   border-radius: 3rem;
   border: none;
+  transition: .5s;
 }
 
 button:hover {
