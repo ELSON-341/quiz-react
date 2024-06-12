@@ -6,6 +6,7 @@ const STARGES = ["Start", "Playing", "End"]
 const initialState = {
     gamesStage: STARGES[0],
     questions,
+    currentQuestion: 0
 }
 
 const quizReducer = (state, action) => {
@@ -13,9 +14,20 @@ const quizReducer = (state, action) => {
 
     switch(action.type) {
         case "CHEGE_STATE":
-            console.log('caiu');
-            return state
-        
+            return {
+                ...state,
+                gamesStage: STARGES[1]
+            }
+
+        case 'RAORDER_QUESTIONS':
+            const reorderedQuestions = questions.sort(() => {
+                return Math.random() - 0.5
+            })
+            return {
+                ...state,
+                questions: reorderedQuestions
+            }
+
         default:
             return state
     }
