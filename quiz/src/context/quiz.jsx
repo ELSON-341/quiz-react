@@ -28,6 +28,19 @@ const quizReducer = (state, action) => {
                 questions: reorderedQuestions
             }
 
+            case 'CHANGE_QUESTION':
+                const nextQuestion = state.currentQuestion + 1
+                let endGame = false
+
+                if(!questions[nextQuestion]) {
+                    endGame = true
+                }
+
+                return {
+                    ...state,
+                    currentQuestion: nextQuestion,
+                    gamesStage: endGame ? STARGES[2] : state.gamesStage
+                }
         default:
             return state
     }
