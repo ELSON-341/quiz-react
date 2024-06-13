@@ -6,11 +6,12 @@ const STARGES = ["Start", "Playing", "End"]
 const initialState = {
     gamesStage: STARGES[0],
     questions,
-    currentQuestion: 0
+    currentQuestion: 0,
+    score: 0
 }
 
 const quizReducer = (state, action) => {
-    console.log(state, action)
+    // console.log(state, action)
 
     switch(action.type) {
         case "CHEGE_STATE":
@@ -41,6 +42,9 @@ const quizReducer = (state, action) => {
                     currentQuestion: nextQuestion,
                     gamesStage: endGame ? STARGES[2] : state.gamesStage
                 }
+
+            case "NEW_GAME":
+                return initialState
         default:
             return state
     }
