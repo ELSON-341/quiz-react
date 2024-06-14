@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { act, createContext, useReducer } from "react";
 import questions from "../data/questions"
 
 const STARGES = ["Start", "Playing", "End"]
@@ -7,7 +7,8 @@ const initialState = {
     gamesStage: STARGES[0],
     questions,
     currentQuestion: 0,
-    score: 0
+    score: 0,
+    answerSelected: false
 }
 
 const quizReducer = (state, action) => {
@@ -45,6 +46,21 @@ const quizReducer = (state, action) => {
 
             case "NEW_GAME":
                 return initialState
+
+            case "CHECK_ANSWER":
+                if(state.answerSelected) return state
+
+                const answer = action.payload.answer
+                const option = action.payload.optino
+                let correctAnswer = 0
+
+                if(answer === option) correctAnswer = 1
+
+                return {
+                    ...state,
+                    score: state.score + correctAnswer,
+                    answerSelected: option
+                }
         default:
             return state
     }
