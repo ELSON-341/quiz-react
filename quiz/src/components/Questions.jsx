@@ -16,12 +16,13 @@ const Questions = (optino) => {
     })
   }
 
+
   return <div id="question">
       <p>Pergunta {quizState.currentQuestion + 1} de {quizState.questions.length}</p>
     <h2>{currentQuestion.question}</h2>
     <div id="options-container">
       {currentQuestion.options.map((optino) => (
-        <Option optino={optino} key={optino} answer={currentQuestion.answer} selectedOption={() => onSelectOption(optino)}/>
+        <Option optino={optino} key={optino} anwer={currentQuestion.answer} selectedOption={() => onSelectOption(optino)}/>
         ))}
     </div>
      {quizState.answerSelected && <button type="button" onClick={() => dispatch({type : "CHANGE_QUESTION"})}>Continuar</button>}
