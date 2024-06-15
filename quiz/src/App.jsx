@@ -12,9 +12,7 @@ import './App.css'
 function App() {
   const [quizState, dispatch] = useContext(QuizContext)
 
-  useEffect(() => {
-    dispatch({type: "RAORDER_QUESTIONS"})
-  },[])
+  
 
   return (
     <div className="app">

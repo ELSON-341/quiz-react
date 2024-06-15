@@ -41,7 +41,7 @@ const quizReducer = (state, action) => {
                 return {
                     ...state,
                     currentQuestion: nextQuestion,
-                    gamesStage: endGame ? STARGES[2] : state.gamesStage,
+                    gamesStage: endGame ? STARGES[3] : state.gamesStage,
                     answerSelected: false
                 }
 
@@ -61,6 +61,20 @@ const quizReducer = (state, action) => {
                     ...state,
                     score: state.score + correctAnswer,
                     answerSelected: option
+                }
+
+            case "START_GAME":
+                let quizQuestions = null
+                state.questions.forEach((question) => {
+                    if(question.category === action.payload) {
+                        quizQuestions = question.questions
+                    }
+                })
+
+                return {
+                    ...state,
+                    questions: quizQuestions,
+                    gamesStage: STARGES[2]
                 }
 
             default:
