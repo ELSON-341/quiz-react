@@ -22,18 +22,19 @@ const Questions = (optino) => {
     <h2>{currentQuestion.question}</h2>
     <div id="options-container">
       {currentQuestion.options.map((optino) => (
-        <Option optino={optino} key={optino} anwer={currentQuestion.answer} selectedOption={() => onSelectOption(optino)}/>
+        <Option optino={optino} key={optino} anwer={currentQuestion.answer} selectedOption={() => onSelectOption(optino)} hide={quizState.optionToHide === optino ? "hide" : null}/>
         ))}
     </div>
     {
-      !quizState.answerSelected && (
+      !quizState.answerSelected && !quizState.help && (
         <>
-        {/* {currentQuestion.tip && <button onClick={dispatch({type: "SHOW_TIP"})}>Dica</button>} */}
-        {quizState.help === 'tip' && <p>{currentQuestion.tip}</p>}
+        {currentQuestion.tip && <button onClick={() => dispatch({type: "SHOW_TIP"})}>Dica</button>}
+        <button onClick={() => dispatch({type: "REMOVE_OPTION"})}>Excluir uma</button>
         </>
       )
     }
-     {quizState.answerSelected && <button type="button" onClick={() => dispatch({type : "CHANGE_QUESTION"})}>Continuar</button>}
+    {!quizState.answerSelected && quizState.help === 'tip' && <p>{currentQuestion.tip}</p>}
+    {quizState.answerSelected && <button type="button" onClick={() => dispatch({type : "CHANGE_QUESTION"})}>Continuar</button>}
   </div>
 }
 

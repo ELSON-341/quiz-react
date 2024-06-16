@@ -9,7 +9,8 @@ const initialState = {
     currentQuestion: 0,
     score: 0,
     answerSelected: false,
-    help: false
+    help: false,
+    optionToHide: null
 }
 
 const quizReducer = (state, action) => {
@@ -35,7 +36,7 @@ const quizReducer = (state, action) => {
                 const nextQuestion = state.currentQuestion + 1
                 let endGame = false
 
-                if(!questions[nextQuestion]) {
+                if(!state.questions[nextQuestion]) {
                     endGame = true
                 }
 
@@ -43,7 +44,8 @@ const quizReducer = (state, action) => {
                     ...state,
                     currentQuestion: nextQuestion,
                     gamesStage: endGame ? STARGES[3] : state.gamesStage,
-                    answerSelected: false
+                    answerSelected: false,
+                    help : false
                 }
 
             case "NEW_GAME":
@@ -82,6 +84,26 @@ const quizReducer = (state, action) => {
                     return {
                         ...state,
                         help: "tip",
+                    }
+
+                case "REMOVE_OPTION":
+                    const questionWithoutOption = state.questions[state.currentQuestion]
+                    console.log(questionWithoutOption);
+
+                    let repeat = true
+                    let optionToHide
+
+                    questionWithoutOption.options.forEach((option) => {
+                        if(option !== questionWithoutOption.answer && repeat) {
+                            optionToHide = option
+                            repeat = false
+                        } 
+                    })
+                    
+                    return {
+                        ...state,
+                        optionToHide,
+                        help: true
                     }
 
             default:

@@ -4,11 +4,11 @@ import { QuizContext } from "../context/quiz"
 import "./Option.css"
 
 
-const Option = ({ optino, selectedOption, anwer }) => {
+const Option = ({ optino, selectedOption, anwer, hide }) => {
     const [quizState, dispatch] = useContext(QuizContext)
   
     return (
-    <div className={`option ${quizState.answerSelected && optino === anwer ? "correct" : ""} ${quizState.answerSelected && optino !== anwer ? "wrong" : ""}`} onClick={() => selectedOption()}>
+    <div className={`option ${quizState.answerSelected && optino === anwer ? "correct" : ""} ${quizState.answerSelected && optino !== anwer ? "wrong" : ""} ${hide ? 'hide' : ''}`} onClick={() => selectedOption()}>
         <p>{optino}</p>
     </div>
   )
