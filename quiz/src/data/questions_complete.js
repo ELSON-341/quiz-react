@@ -44,11 +44,15 @@ const data = [
           question: "Para aumentar a fonte de um elemento utilizamos:",
           options: ["font", "text-transform", "font-size", "hover"],
           answer: "font-size",
+
+          tip: "Alguma dica"
         },
         {
           question: "A posição que deixa um elemento fixo é a:",
           options: ["static", "absolute", "fixed", "relative"],
           answer: "fixed",
+
+          tip: "Outra di dica"
         },
       ],
     },

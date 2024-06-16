@@ -8,7 +8,8 @@ const initialState = {
     questions,
     currentQuestion: 0,
     score: 0,
-    answerSelected: false
+    answerSelected: false,
+    help: false
 }
 
 const quizReducer = (state, action) => {
@@ -22,7 +23,7 @@ const quizReducer = (state, action) => {
             }
 
         case 'RAORDER_QUESTIONS':
-            const reorderedQuestions = questions.sort(() => {
+            const reorderedQuestions = state.questions.sort(() => {
                 return Math.random() - 0.5
             })
             return {
@@ -56,7 +57,7 @@ const quizReducer = (state, action) => {
                 let correctAnswer = 0
 
                 if(answer === option) correctAnswer += 1
-                console.log(correctAnswer);
+                
                 return {
                     ...state,
                     score: state.score + correctAnswer,
@@ -76,6 +77,12 @@ const quizReducer = (state, action) => {
                     questions: quizQuestions,
                     gamesStage: STARGES[2]
                 }
+
+                case "SHOW_TIP":
+                    return {
+                        ...state,
+                        help: "tip",
+                    }
 
             default:
                 return state

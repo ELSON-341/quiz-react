@@ -25,6 +25,14 @@ const Questions = (optino) => {
         <Option optino={optino} key={optino} anwer={currentQuestion.answer} selectedOption={() => onSelectOption(optino)}/>
         ))}
     </div>
+    {
+      !quizState.answerSelected && (
+        <>
+        {/* {currentQuestion.tip && <button onClick={dispatch({type: "SHOW_TIP"})}>Dica</button>} */}
+        {quizState.help === 'tip' && <p>{currentQuestion.tip}</p>}
+        </>
+      )
+    }
      {quizState.answerSelected && <button type="button" onClick={() => dispatch({type : "CHANGE_QUESTION"})}>Continuar</button>}
   </div>
 }

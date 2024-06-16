@@ -8,8 +8,8 @@ import "./PickCategory.css"
 const PickCategory = () => {
   const [quizState, dispatch] = useContext(QuizContext)
 
-  const chooseCategoryReorderQuestions = (categoria) => {
-    dispatch({type: "START_GAME", payload: categoria})
+  const chooseCategoryReorderQuestions = (category) => {
+    dispatch({type: "START_GAME", payload: category})
 
     dispatch({type: "REODER_QUESTIONS"})
   }
